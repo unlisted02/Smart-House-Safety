@@ -5,13 +5,14 @@ from flask_jwt_extended import JWTManager, create_access_token, create_refresh_t
 from config import Config
 from flask_migrate import Migrate
 import logging
+from flask_cors import CORS
 
-# Configure logging
 logging.basicConfig(filename='app.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 app = Flask(__name__)
 app.config.from_object(Config)
+CORS(app) 
 
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
