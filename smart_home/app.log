@@ -1,0 +1,8 @@
+2024-09-07 02:51:20,871 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-09-07 02:51:38,971 - INFO - 127.0.0.1 - - [07/Sep/2024 02:51:38] "[31m[1mGET /login HTTP/1.1[0m" 405 -
+2024-09-07 02:51:59,029 - INFO - 127.0.0.1 - - [07/Sep/2024 02:51:59] "[31m[1mGET /login HTTP/1.1[0m" 405 -
+2024-09-07 02:52:25,474 - INFO - User logged in: user1
+2024-09-07 02:52:25,474 - INFO - 127.0.0.1 - - [07/Sep/2024 02:52:25] "POST /login HTTP/1.1" 200 -
+2024-09-07 02:53:05,481 - INFO - Device Living Room Light controlled: turn_off by User ID: 1
+2024-09-07 02:53:05,482 - INFO - 127.0.0.1 - - [07/Sep/2024 02:53:05] "POST /mock/devices/1/control HTTP/1.1" 200 -
+2024-09-07 03:02:41,865 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
