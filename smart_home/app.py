@@ -1,3 +1,4 @@
+from functools import wraps
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
@@ -6,6 +7,7 @@ from config import Config
 from flask_migrate import Migrate
 import logging
 from flask_cors import CORS
+import random
 
 logging.basicConfig(filename='app.log', level=logging.INFO, 
                     format='%(asctime)s - %(levelname)s - %(message)s')
@@ -27,6 +29,89 @@ def check_if_token_in_blacklist(jwt_header, jwt_payload):
     jti = jwt_payload['jti']
     token = TokenBlacklist.query.filter_by(jti=jti).first()
     return token is not None  # Returns True if token is blacklisted
+
+
+# Admin-only decorator
+def admin_required(fn):
+    @wraps(fn)
+    @jwt_required()
+    def wrapper(*args, **kwargs):
+        user_id = get_jwt_identity()
+        user = User.query.get(user_id)
+        if not user or not user.is_admin:
+            logging.warning(f"Unauthorized access attempt by User ID: {user_id}")
+            return jsonify({"error": "Admin access required"}), 403
+        return fn(*args, **kwargs)
+    return wrapper
+
+# Get All Users (Admin)
+@app.route('/users', methods=['GET'])
+@admin_required
+def get_all_users():
+    users = User.query.all()
+    users_list = [
+        {
+            "id": user.id,
+            "username": user.username,
+            "parental_controls": user.get_parental_controls()
+        }
+        for user in users
+    ]
+    logging.info("All users fetched")
+    return jsonify(users_list), 200
+
+# Get User Details (Admin)
+@app.route('/users/<int:id>', methods=['GET'])
+@admin_required
+def get_user_details(id):
+    user = User.query.get(id)
+    if not user:
+        logging.error(f"User with ID {id} not found.")
+        return jsonify({"error": "User not found"}), 404
+
+    user_details = {
+        "id": user.id,
+        "username": user.username,
+        "parental_controls": user.get_parental_controls()
+    }
+    logging.info(f"Details fetched for user ID: {id}")
+    return jsonify(user_details), 200
+
+# Update User Details (Admin)
+@app.route('/users/<int:id>', methods=['PUT'])
+@admin_required
+def update_user_details(id):
+    user = User.query.get(id)
+    if not user:
+        logging.error(f"User with ID {id} not found.")
+        return jsonify({"error": "User not found"}), 404
+
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+
+    if username:
+        user.username = username
+    if password:
+        user.password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+    db.session.commit()
+    logging.info(f"User ID {id} updated")
+    return jsonify({"message": "User updated successfully"}), 200
+
+# Delete User (Admin)
+@app.route('/users/<int:id>', methods=['DELETE'])
+@admin_required
+def delete_user(id):
+    user = User.query.get(id)
+    if not user:
+        logging.error(f"User with ID {id} not found.")
+        return jsonify({"error": "User not found"}), 404
+
+    db.session.delete(user)
+    db.session.commit()
+    logging.info(f"User ID {id} deleted")
+    return jsonify({"message": "User deleted successfully"}), 200
 
 # Home route
 @app.route('/')
@@ -98,6 +183,25 @@ def add_mock_device():
     logging.info(f"Mock device added: {device_name} (Type: {device_type}) by User ID: {user_id}")
     return jsonify({"message": "Mock device added successfully", "device_id": device.id}), 201
 
+# Fetch all Mock IoT Devices
+@app.route('/mock/devices', methods=['GET'])
+@jwt_required()
+def get_all_mock_devices():
+    user_id = get_jwt_identity()
+    devices = MockIoTDevice.query.filter_by(user_id=user_id).all()
+    devices_list = [
+        {
+            "id": device.id,
+            "name": device.name,
+            "device_type": device.device_type,
+            "status": device.status,
+            "last_action": device.last_action
+        }
+        for device in devices
+    ]
+    logging.info(f"All devices fetched for User ID: {user_id}")
+    return jsonify(devices_list), 200
+
 # Control a Mock IoT Device
 @app.route('/mock/devices/<int:id>/control', methods=['POST'])
 @jwt_required()
@@ -152,6 +256,58 @@ def mock_device_status(id):
         "logs": logs
     })
 
+# Update a Mock IoT Device
+@app.route('/mock/devices/<int:id>', methods=['PUT'])
+@jwt_required()
+def update_mock_device(id):
+    device = MockIoTDevice.query.get(id)
+    if not device:
+        logging.error(f"Device with ID {id} not found.")
+        return jsonify({"error": "Device not found"}), 404
+
+    data = request.get_json()
+    device_name = data.get('name')
+    device_type = data.get('device_type')
+
+    if device_name:
+        device.name = device_name
+    if device_type:
+        device.device_type = device_type
+
+    db.session.commit()
+
+    logging.info(f"Device {device.name} (ID: {id}) updated by User ID: {get_jwt_identity()}")
+    return jsonify({"message": "Device updated successfully", "device": {
+        "id": device.id,
+        "name": device.name,
+        "device_type": device.device_type,
+        "status": device.status,
+        "last_action": device.last_action
+    }}), 200
+
+# Delete a Mock IoT Device
+@app.route('/mock/devices/<int:id>', methods=['DELETE'])
+@jwt_required()
+def delete_mock_device(id):
+    device = MockIoTDevice.query.get(id)
+    if not device:
+        logging.error(f"Device with ID {id} not found.")
+        return jsonify({"error": "Device not found"}), 404
+
+    db.session.delete(device)
+    db.session.commit()
+
+    logging.info(f"Device {device.name} (ID: {id}) deleted by User ID: {get_jwt_identity()}")
+    return jsonify({"message": "Device deleted successfully"})
+
+# Temperature Controller
+@app.route('/temperature', methods=['GET'])
+@jwt_required()
+def get_temperature():
+    temperature = round(random.uniform(18.0, 26.0), 2)  # Generate a random temperature between 18 and 26 degrees Celsius
+    logging.info(f"Temperature reading: {temperature}°C")
+    return jsonify({"temperature": temperature})
+
 # Parental Control Settings
 @app.route('/parental-control/settings', methods=['POST'])
 @jwt_required()
@@ -186,6 +342,45 @@ def get_parental_control():
     
     logging.info(f"Parental controls retrieved for User ID: {user_id}")
     return jsonify({"message": "Parental controls retrieved", "settings": settings})
+
+# Get All Device Logs
+@app.route('/logs', methods=['GET'])
+@jwt_required()
+def get_all_logs():
+    logs = DeviceLog.query.all()
+    logs_list = [
+        {
+            "id": log.id,
+            "action": log.action,
+            "timestamp": log.timestamp,
+            "device_id": log.device_id
+        }
+        for log in logs
+    ]
+    logging.info("All device logs fetched")
+    return jsonify(logs_list), 200
+
+# Get Logs for a Specific Device
+@app.route('/logs/<int:device_id>', methods=['GET'])
+@jwt_required()
+def get_device_logs(device_id):
+    device = MockIoTDevice.query.get(device_id)
+    if not device:
+        logging.error(f"Device with ID {device_id} not found.")
+        return jsonify({"error": "Device not found"}), 404
+
+    logs = DeviceLog.query.filter_by(device_id=device_id).all()
+    logs_list = [
+        {
+            "id": log.id,
+            "action": log.action,
+            "timestamp": log.timestamp,
+            "device_id": log.device_id
+        }
+        for log in logs
+    ]
+    logging.info(f"Logs fetched for device ID: {device_id}")
+    return jsonify(logs_list), 200
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -7,6 +7,7 @@ class User(db.Model):
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
     parental_controls = db.Column(db.Text, nullable=True)  # Store as JSON string in Text
+    is_admin = db.Column(db.Boolean, default=False)  # Add is_admin field
 
     def set_parental_controls(self, controls_dict):
         """Serialize the dictionary as a JSON string before storing it."""
@@ -15,7 +16,6 @@ class User(db.Model):
     def get_parental_controls(self):
         """Deserialize the JSON string back into a dictionary."""
         return json.loads(self.parental_controls) if self.parental_controls else {}
-    
     
 class MockIoTDevice(db.Model):
     __tablename__ = 'mock_iot_device'  # Ensure the table name is correctly set
