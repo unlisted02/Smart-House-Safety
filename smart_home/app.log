@@ -112,3 +112,36 @@
 2024-09-07 16:56:53,188 - INFO - 127.0.0.1 - - [07/Sep/2024 16:56:53] "[33mOPTIONS /update-user HTTP/1.1[0m" 404 -
 2024-09-07 16:57:01,468 - INFO - 127.0.0.1 - - [07/Sep/2024 16:57:01] "[33mOPTIONS /update-user HTTP/1.1[0m" 404 -
 2024-09-07 16:57:02,639 - INFO - 127.0.0.1 - - [07/Sep/2024 16:57:02] "[33mOPTIONS /update-user HTTP/1.1[0m" 404 -
+2024-09-07 22:52:48,765 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-09-07 22:54:05,108 - INFO - Home route accessed.
+2024-09-07 22:54:05,113 - INFO - 127.0.0.1 - - [07/Sep/2024 22:54:05] "GET / HTTP/1.1" 200 -
+2024-09-07 22:54:52,260 - INFO - User registered: testuser
+2024-09-07 22:54:52,269 - INFO - 127.0.0.1 - - [07/Sep/2024 22:54:52] "[35m[1mPOST /register HTTP/1.1[0m" 201 -
+2024-09-07 22:55:03,998 - INFO - User logged in: testuser
+2024-09-07 22:55:03,998 - INFO - 127.0.0.1 - - [07/Sep/2024 22:55:03] "POST /login HTTP/1.1" 200 -
+2024-09-07 22:56:30,053 - INFO - User with token 5bb65a0f-8d6f-4e5d-9fa2-a66b06a08743 logged out and token blacklisted
+2024-09-07 22:56:30,056 - INFO - 127.0.0.1 - - [07/Sep/2024 22:56:30] "DELETE /logout HTTP/1.1" 200 -
+2024-09-07 22:57:17,863 - INFO - User logged in: testuser
+2024-09-07 22:57:17,863 - INFO - 127.0.0.1 - - [07/Sep/2024 22:57:17] "POST /login HTTP/1.1" 200 -
+2024-09-07 22:58:57,817 - INFO - Mock device added: Smart Light (Type: light) by User ID: 3
+2024-09-07 22:58:57,835 - INFO - 127.0.0.1 - - [07/Sep/2024 22:58:57] "[35m[1mPOST /mock/devices HTTP/1.1[0m" 201 -
+2024-09-07 22:59:49,753 - INFO - All devices fetched for User ID: 3
+2024-09-07 22:59:49,761 - INFO - 127.0.0.1 - - [07/Sep/2024 22:59:49] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-07 22:59:59,506 - INFO - All devices fetched for User ID: 3
+2024-09-07 22:59:59,507 - INFO - 127.0.0.1 - - [07/Sep/2024 22:59:59] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-07 23:01:11,035 - INFO - Mock device added: Smart tv (Type: electronic) by User ID: 3
+2024-09-07 23:01:11,048 - INFO - 127.0.0.1 - - [07/Sep/2024 23:01:11] "[35m[1mPOST /mock/devices HTTP/1.1[0m" 201 -
+2024-09-07 23:01:18,559 - INFO - All devices fetched for User ID: 3
+2024-09-07 23:01:18,559 - INFO - 127.0.0.1 - - [07/Sep/2024 23:01:18] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-07 23:03:17,915 - INFO - 127.0.0.1 - - [07/Sep/2024 23:03:17] "[31m[1mGET /mock/devices/3/control HTTP/1.1[0m" 405 -
+2024-09-07 23:03:28,501 - INFO - 127.0.0.1 - - [07/Sep/2024 23:03:28] "[31m[1mGET /mock/devices/2/control HTTP/1.1[0m" 405 -
+2024-09-07 23:03:42,522 - INFO - 127.0.0.1 - - [07/Sep/2024 23:03:42] "[31m[1mGET /mock/devices/1/control HTTP/1.1[0m" 405 -
+2024-09-07 23:04:29,502 - INFO - 127.0.0.1 - - [07/Sep/2024 23:04:29] "[31m[1mGET /mock/devices/2/control HTTP/1.1[0m" 405 -
+2024-09-07 23:04:51,987 - INFO - Device Smart Light controlled: turn_on by User ID: 3
+2024-09-07 23:04:51,992 - INFO - 127.0.0.1 - - [07/Sep/2024 23:04:51] "POST /mock/devices/2/control HTTP/1.1" 200 -
+2024-09-07 23:05:00,696 - INFO - Device Smart tv controlled: turn_on by User ID: 3
+2024-09-07 23:05:00,696 - INFO - 127.0.0.1 - - [07/Sep/2024 23:05:00] "POST /mock/devices/3/control HTTP/1.1" 200 -
+2024-09-07 23:05:57,711 - INFO - Device Smart tv controlled: turn_off by User ID: 3
+2024-09-07 23:05:57,713 - INFO - 127.0.0.1 - - [07/Sep/2024 23:05:57] "POST /mock/devices/3/control HTTP/1.1" 200 -
+2024-09-07 23:06:10,733 - INFO - Status checked for device Smart tv (ID: 3)
+2024-09-07 23:06:10,733 - INFO - 127.0.0.1 - - [07/Sep/2024 23:06:10] "GET /mock/devices/3/status HTTP/1.1" 200 -
