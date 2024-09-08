@@ -16,23 +16,28 @@ class User(db.Model):
     def get_parental_controls(self):
         """Deserialize the JSON string back into a dictionary."""
         return json.loads(self.parental_controls) if self.parental_controls else {}
-    
 class MockIoTDevice(db.Model):
-    __tablename__ = 'mock_iot_device'  # Ensure the table name is correctly set
+    __tablename__ = 'mock_iot_device'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
     device_type = db.Column(db.String(50), nullable=False)
     status = db.Column(db.String(10), default='off')
     last_action = db.Column(db.String(100), nullable=True)
+    location = db.Column(db.String(50), nullable=True)  # Add location field
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', backref=db.backref('mock_devices', lazy=True))
 
+    # Rename the relationship to avoid conflict with the backref
+    device_logs = db.relationship('DeviceLog', backref='device', cascade="all, delete-orphan")
+
 class DeviceLog(db.Model):
+    __tablename__ = 'device_log'
     id = db.Column(db.Integer, primary_key=True)
     action = db.Column(db.String(50), nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
-    device_id = db.Column(db.Integer, db.ForeignKey('mock_iot_device.id'), nullable=False)  # Correct foreign key reference
-    device = db.relationship('MockIoTDevice', backref=db.backref('logs', lazy=True))
+    device_id = db.Column(db.Integer, db.ForeignKey('mock_iot_device.id'), nullable=False)
+
+    # Backref is automatically created on the `MockIoTDevice.device_logs` relationship
 
 class TokenBlacklist(db.Model):
     id = db.Column(db.Integer, primary_key=True)

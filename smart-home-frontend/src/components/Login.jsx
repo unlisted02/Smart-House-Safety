@@ -1,8 +1,7 @@
-// src/components/Login.jsx
 import React, { useState } from 'react';
-import { TextField, Button, Typography, Container } from '@mui/material';
-import api from '../api';
+import { TextField, Button, Typography, Container, Link } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import api from '../api';
 import { setTokens } from '../auth';
 
 const Login = () => {
@@ -48,6 +47,9 @@ const Login = () => {
           Login
         </Button>
       </form>
+      <Typography variant="body2" align="center" style={{ marginTop: '1rem' }}>
+        Don't have an account? <Link href="/register">Register</Link>
+      </Typography>
     </Container>
   );
 };
