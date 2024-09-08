@@ -388,27 +388,6 @@ def get_temperature():
     return jsonify({"temperature": temperature})
 
 
-# # Parental Control Settings
-# @app.route("/parental-control/settings", methods=["POST"])
-# @jwt_required()
-# def parental_control():
-#     user_id = get_jwt_identity()
-#     user = User.query.get(user_id)
-#     if not user:
-#         logging.error(f"User with ID {user_id} not found.")
-#         return jsonify({"error": "User not found"}), 404
-
-#     settings = request.json.get("settings")
-
-#     # Serialize the settings (dict -> JSON string)
-#     user.set_parental_controls(settings)
-#     db.session.commit()
-
-#     logging.info(f"Parental controls updated for User ID: {user_id}")
-#     return jsonify({"message": "Parental controls updated", "settings": settings})
-
-
-
 # Parental Control Settings Endpoint
 @app.route('/parental-control/settings', methods=['POST'])
 @jwt_required()

@@ -5229,3 +5229,44 @@ AttributeError: 'User' object has no attribute 'email'
 2024-09-08 16:45:20,300 - INFO - Temperature reading: 23.86°C
 2024-09-08 16:45:20,300 - INFO - 127.0.0.1 - - [08/Sep/2024 16:45:20] "GET /mock/devices HTTP/1.1" 200 -
 2024-09-08 16:45:20,300 - INFO - 127.0.0.1 - - [08/Sep/2024 16:45:20] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:56:51,232 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-09-08 16:57:03,260 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:03,263 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:03,447 - INFO - Temperature reading: 24.37°C
+2024-09-08 16:57:03,447 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:03,447 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:03,461 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:03,548 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:03,552 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:03,554 - INFO - Temperature reading: 21.32°C
+2024-09-08 16:57:03,556 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:03] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:13,979 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:13] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:13,979 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:13] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:13,997 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:13,997 - INFO - Temperature reading: 24.17°C
+2024-09-08 16:57:13,997 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:13] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:13,997 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:13] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:14,028 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:14,036 - INFO - Temperature reading: 19.37°C
+2024-09-08 16:57:14,036 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:14] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:14,036 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:14] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:16,751 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:16,751 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:16] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:16,764 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:16,764 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:16] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:34,489 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:34] "OPTIONS /logout HTTP/1.1" 200 -
+2024-09-08 16:57:34,569 - INFO - User with token 14fa7dfd-59dc-4cf7-acb7-fe12ddf2e196 logged out and token blacklisted
+2024-09-08 16:57:34,574 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:34] "DELETE /logout HTTP/1.1" 200 -
+2024-09-08 16:57:39,802 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:39] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 16:57:40,808 - INFO - User logged in: adminuser1
+2024-09-08 16:57:40,813 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "POST /login HTTP/1.1" 200 -
+2024-09-08 16:57:40,923 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:40,930 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:40,945 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:40,945 - INFO - Temperature reading: 23.03°C
+2024-09-08 16:57:40,946 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 16:57:40,948 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:40,982 - INFO - All devices fetched for User ID: 4
+2024-09-08 16:57:40,983 - INFO - Temperature reading: 21.14°C
+2024-09-08 16:57:40,983 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 16:57:40,983 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /temperature HTTP/1.1" 200 -
