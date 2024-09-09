@@ -1,8 +1,9 @@
 import React from 'react';
 import { Drawer, List, ListItem, ListItemIcon, ListItemText, Box } from '@mui/material';
-import { Home, Devices, Lock, Settings, ExitToApp, Weekend, Kitchen, Bed, Bathtub } from '@mui/icons-material';
+import { Home, Devices, Lock, Settings, ExitToApp, Weekend, Kitchen as KitchenIcon, Bed, Bathtub } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { logout } from '../auth';
+import { ListAlt } from '@mui/icons-material';
 
 const Sidebar = ({ onDevicesClick }) => {
   const navigate = useNavigate();
@@ -32,22 +33,25 @@ const Sidebar = ({ onDevicesClick }) => {
             <ListItemIcon className="text-gray-900"><Settings /></ListItemIcon>
             <ListItemText primary="User Details" className="text-gray-900" />
           </ListItem>
-      
-          <ListItem button component={Link} to="/" key="Living Room" className="hover:bg-slate-200 rounded-lg">
+          <ListItem button component={Link} to="/living-room" key="Living Room" className="hover:bg-slate-200 rounded-lg">
             <ListItemIcon className="text-gray-900"><Weekend /></ListItemIcon>
             <ListItemText primary="Living Room" className="text-gray-900" />
           </ListItem>
-          <ListItem button component={Link} to="/" key="Kitchen" className="hover:bg-slate-200 rounded-lg">
-            <ListItemIcon className="text-gray-900"><Kitchen /></ListItemIcon>
+          <ListItem button component={Link} to="/kitchen" key="Kitchen" className="hover:bg-slate-200 rounded-lg">
+            <ListItemIcon className="text-gray-900"><KitchenIcon /></ListItemIcon>
             <ListItemText primary="Kitchen" className="text-gray-900" />
           </ListItem>
-          <ListItem button component={Link} to="/" key="Bedroom" className="hover:bg-slate-200 rounded-lg">
+          <ListItem button component={Link} to="/bedroom" key="Bedroom" className="hover:bg-slate-200 rounded-lg">
             <ListItemIcon className="text-gray-900"><Bed /></ListItemIcon>
             <ListItemText primary="Bedroom" className="text-gray-900" />
           </ListItem>
-          <ListItem button component={Link} to="/" key="Bathroom" className="hover:bg-slate-200 rounded-lg">
+          <ListItem button component={Link} to="/bathroom" key="Bathroom" className="hover:bg-slate-200 rounded-lg">
             <ListItemIcon className="text-gray-900"><Bathtub /></ListItemIcon>
             <ListItemText primary="Bathroom" className="text-gray-900" />
+          </ListItem>
+          <ListItem button component={Link} to="/logs" key="All Logs" className="hover:bg-slate-200 rounded-lg">
+            <ListItemIcon className="text-gray-900"><ListAlt /></ListItemIcon>
+            <ListItemText primary="All Logs" className="text-gray-900" />
           </ListItem>
         </List>
         <List className="p-4">

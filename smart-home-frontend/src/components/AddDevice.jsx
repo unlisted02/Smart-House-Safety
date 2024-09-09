@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { TextField, Button, Typography, FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import axios from 'axios';
 import { getAccessToken } from '../auth';
+
 const AddDevice = ({ onDeviceAdded }) => {
   const [name, setName] = useState('');
   const [deviceType, setDeviceType] = useState('');
   const [location, setLocation] = useState('');
   const [error, setError] = useState(null);
+
   const handleAddDevice = async (e) => {
     e.preventDefault();
     try {
@@ -53,10 +55,10 @@ const AddDevice = ({ onDeviceAdded }) => {
         <FormControl fullWidth margin="normal">
           <InputLabel>Location</InputLabel>
           <Select value={location} onChange={(e) => setLocation(e.target.value)}>
-            <MenuItem value="livingroom">Living Room</MenuItem>
+            <MenuItem value="living-room">Living Room</MenuItem>
             <MenuItem value="kitchen">Kitchen</MenuItem>
             <MenuItem value="bathroom">Bathroom</MenuItem>
-            <MenuItem value="hallway">Hallway</MenuItem>
+            <MenuItem value="Bedroom">Bedroom</MenuItem>
             <MenuItem value="corridor">Corridor</MenuItem>
             <MenuItem value="veranda">Veranda</MenuItem>
           </Select>

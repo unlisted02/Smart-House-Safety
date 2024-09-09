@@ -10,7 +10,13 @@ import Login from './components/Login';
 import Register from './components/Register';
 import ProtectedRoute from './components/ProtectedRoute';
 import Temperature from './components/Temperature.jsx';
+import Kitchen from './components/Kitchen'; // Import the Kitchen component
+import Bathroom from './components/Bathroom'; // Import the Bathroom component
+import LivingRoom from './components/LivingRoom'; // Import the Living Room component
+import Bedroom from './components/BedRoom'; // Import the Bedroom component
 import AuthWrapper from './AuthWrapper'; // Import the AuthWrapper component
+import AllDeviceLogs from './components/AllDeviceLogs'; // Import the AllDeviceLogs component
+
 
 function App() {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -60,6 +66,32 @@ function App() {
                   <UpdateUser />
                 </ProtectedRoute>
               } />
+              <Route path="/kitchen" element={
+                <ProtectedRoute>
+                  <Kitchen />
+                </ProtectedRoute>
+              } />
+              <Route path="/bathroom" element={
+                <ProtectedRoute>
+                  <Bathroom />
+                </ProtectedRoute>
+              } />
+              <Route path="/living-room" element={
+                <ProtectedRoute>
+                  <LivingRoom />
+                </ProtectedRoute>
+              } />
+              <Route path="/bedroom" element={
+                <ProtectedRoute>
+                  <Bedroom />
+                </ProtectedRoute>
+              } />
+            
+              <Route path="/logs" element={
+              <ProtectedRoute>
+                <AllDeviceLogs />
+              </ProtectedRoute>
+            } />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Routes>

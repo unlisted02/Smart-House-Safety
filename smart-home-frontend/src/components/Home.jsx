@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Typography } from '@mui/material';
+import Kitchen from './Kitchen';
 import { Line, Bar, Doughnut } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -102,10 +103,10 @@ const Home = () => {
           Dashboard Home-Control
         </Typography>
         <div className="flex space-x-4 font-bold text-2xl">
-          <a href="/" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Living Room</a>
-          <a href="/" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Kitchen</a>
-          <a href="/" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Bedroom</a>
-          <a href="/" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Bathroom</a>
+          <a href="/living-room" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Living Room</a>
+          <a href="/kitchen" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Kitchen</a>
+          <a href="/bedroom" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Bedroom</a>
+          <a href="/bathroom" className="px-4 py-2 border border-gray-300 rounded-lg text-gray-900 hover:text-gray-500 hover:bg-indigo-500 transition">Bathroom</a>
         </div>
       </div>
 

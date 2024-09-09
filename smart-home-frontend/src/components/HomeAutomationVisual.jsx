@@ -1,11 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Card, CardContent, Typography, Button, Box } from '@mui/material';
+import { Grid, Card, CardContent, Typography, Button, Box, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from '@mui/material';
+import { Delete as DeleteIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { getAccessToken } from '../auth';
 
 const HomeAutomationVisual = () => {
   const [devices, setDevices] = useState([]);
   const [error, setError] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [selectedDevice, setSelectedDevice] = useState(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    device_type: '',
+    location: ''
+  });
 
   useEffect(() => {
     const fetchDevices = async () => {
@@ -36,7 +44,6 @@ const HomeAutomationVisual = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Device status toggled:', data);
       setDevices(devices.map(device => device.id === deviceId ? { ...device, status: data.status, last_action: data.last_action } : device));
     } catch (error) {
       console.error('Error toggling device status:', error);
@@ -52,10 +59,48 @@ const HomeAutomationVisual = () => {
           Authorization: `Bearer ${token}`
         }
       });
-      console.log('Device deleted:', deviceId);
       setDevices(devices.filter(device => device.id !== deviceId));
     } catch (error) {
-      console.error('Error deleting device:', error);
+      setError(error.response ? error.response.data : 'Unknown error');
+    }
+  };
+
+  const handleOpenUpdateForm = (device) => {
+    setSelectedDevice(device);
+    setFormData({
+      name: device.name,
+      device_type: device.device_type,
+      location: device.location
+    });
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+    setSelectedDevice(null);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleUpdateDevice = async () => {
+    try {
+      const token = getAccessToken();
+      const { data } = await axios.put(`http://127.0.0.1:5000/mock/devices/${selectedDevice.id}`, formData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      setDevices(devices.map(device => device.id === selectedDevice.id ? data.device : device));
+      handleClose();
+      alert('Device updated successfully');
+    } catch (error) {
+      console.error('Error updating device:', error);
       setError(error.response ? error.response.data : 'Unknown error');
     }
   };
@@ -75,20 +120,24 @@ const HomeAutomationVisual = () => {
                 <Box display="flex" justifyContent="space-between" mt={2}>
                   <Button
                     variant="contained"
-                    style={{
-                      backgroundColor: device.status === 'on' ? 'green' : 'purple',
-                      color: 'white'
-                    }}
+                    className={`text-white ${device.status === 'on' ? 'bg-green-500' : 'bg-purple-200'}`}
                     onClick={() => handleToggleDevice(device.id, device.status)}
                   >
                     {device.status === 'on' ? 'Turn Off' : 'Turn On'}
                   </Button>
                   <Button
                     variant="contained"
-                    style={{ backgroundColor: 'gray-500', color: 'white' }}
+                    className="bg-gradient-to-r from-orange-600 to-orange-900 text-white"
+                    onClick={() => handleOpenUpdateForm(device)}
+                  >
+                    Update Device
+                  </Button>
+                  <Button
+                    variant="contained"
+                    className="bg-gray-500 text-white hover:bg-red-500"
                     onClick={() => handleDeleteDevice(device.id)}
                   >
-                    Delete Device
+                    <DeleteIcon />
                   </Button>
                 </Box>
               </CardContent>
@@ -96,6 +145,51 @@ const HomeAutomationVisual = () => {
           </Grid>
         ))}
       </Grid>
+
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Update Device</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Update the details of the device.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            name="name"
+            label="Device Name"
+            type="text"
+            fullWidth
+            value={formData.name}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            name="device_type"
+            label="Device Type"
+            type="text"
+            fullWidth
+            value={formData.device_type}
+            onChange={handleChange}
+          />
+          <TextField
+            margin="dense"
+            name="location"
+            label="Location"
+            type="text"
+            fullWidth
+            value={formData.location}
+            onChange={handleChange}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleUpdateDevice} color="primary">
+            Update
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
