@@ -5270,3 +5270,278 @@ AttributeError: 'User' object has no attribute 'email'
 2024-09-08 16:57:40,983 - INFO - Temperature reading: 21.14°C
 2024-09-08 16:57:40,983 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /mock/devices HTTP/1.1" 200 -
 2024-09-08 16:57:40,983 - INFO - 127.0.0.1 - - [08/Sep/2024 16:57:40] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 18:59:10,954 - INFO -  * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+2024-09-08 18:59:23,469 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 18:59:23,478 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 18:59:23,500 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 18:59:23,503 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 18:59:23,508 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 18:59:23,511 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "[31m[1mGET /temperature HTTP/1.1[0m" 401 -
+2024-09-08 18:59:23,516 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:23] "[31m[1mGET /temperature HTTP/1.1[0m" 401 -
+2024-09-08 18:59:33,205 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:33] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 18:59:33,322 - WARNING - Failed login attempt for user: adminuser
+2024-09-08 18:59:33,322 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:33] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2024-09-08 18:59:33,329 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:33] "OPTIONS /refresh HTTP/1.1" 200 -
+2024-09-08 18:59:33,337 - INFO - Access token refreshed for user: 4
+2024-09-08 18:59:33,337 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:33] "POST /refresh HTTP/1.1" 200 -
+2024-09-08 18:59:33,357 - WARNING - Failed login attempt for user: adminuser
+2024-09-08 18:59:33,357 - INFO - 127.0.0.1 - - [08/Sep/2024 18:59:33] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2024-09-08 19:07:57,774 - INFO - 127.0.0.1 - - [08/Sep/2024 19:07:57] "[31m[1mGET /parental-control/settings HTTP/1.1[0m" 401 -
+2024-09-08 19:09:13,753 - INFO - 127.0.0.1 - - [08/Sep/2024 19:09:13] "[33mPOST /lregister HTTP/1.1[0m" 404 -
+2024-09-08 19:09:27,764 - INFO - User registered: parent_1
+2024-09-08 19:09:27,765 - INFO - 127.0.0.1 - - [08/Sep/2024 19:09:27] "[35m[1mPOST /register HTTP/1.1[0m" 201 -
+2024-09-08 19:10:43,818 - INFO - User logged in: parent_1
+2024-09-08 19:10:43,818 - INFO - 127.0.0.1 - - [08/Sep/2024 19:10:43] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:11:07,744 - INFO - User logged in: parent_1
+2024-09-08 19:11:07,744 - INFO - 127.0.0.1 - - [08/Sep/2024 19:11:07] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:12:30,675 - INFO - 127.0.0.1 - - [08/Sep/2024 19:12:30] "[31m[1mPOST /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 19:12:47,449 - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask_cors\extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\Smart-Home-Automation-System-\smart_home\app.py", line 171, in login
+    user = User.query.filter_by(username=data["username"]).first()
+                                         ~~~~^^^^^^^^^^^^
+KeyError: 'username'
+2024-09-08 19:12:47,492 - INFO - 127.0.0.1 - - [08/Sep/2024 19:12:47] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2024-09-08 19:13:30,640 - INFO - User logged in: parent_1
+2024-09-08 19:13:30,640 - INFO - 127.0.0.1 - - [08/Sep/2024 19:13:30] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:14:22,161 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:14:22,161 - INFO - 127.0.0.1 - - [08/Sep/2024 19:14:22] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:08,615 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:08] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:08,621 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:08] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:08,622 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:08] "[31m[1mGET /mock/devices HTTP/1.1[0m" 422 -
+2024-09-08 19:15:08,626 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:08] "[31m[1mGET /mock/devices HTTP/1.1[0m" 422 -
+2024-09-08 19:15:22,286 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:22] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 19:15:22,289 - WARNING - Failed login attempt for user: lloyd
+2024-09-08 19:15:22,289 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:22] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2024-09-08 19:15:22,299 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:22] "OPTIONS /refresh HTTP/1.1" 200 -
+2024-09-08 19:15:22,302 - INFO - Access token refreshed for user: 4
+2024-09-08 19:15:22,303 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:22] "POST /refresh HTTP/1.1" 200 -
+2024-09-08 19:15:22,309 - WARNING - Failed login attempt for user: lloyd
+2024-09-08 19:15:22,310 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:22] "[31m[1mPOST /login HTTP/1.1[0m" 401 -
+2024-09-08 19:15:33,580 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 19:15:33,813 - INFO - User logged in: parent_1
+2024-09-08 19:15:33,813 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:15:33,879 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:33,881 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:15:33,891 - INFO - Temperature reading: 24.33°C
+2024-09-08 19:15:33,892 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:15:33,897 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:15:33,898 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:33,916 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:15:33,917 - INFO - Temperature reading: 23.14°C
+2024-09-08 19:15:33,917 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:33,918 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:33] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:15:39,549 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:39] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:39,556 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:15:39,556 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:39] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:15:39,563 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:15:39,564 - INFO - 127.0.0.1 - - [08/Sep/2024 19:15:39] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:16:32,645 - INFO - Mock device added: tv (Type: electronic, Location: bedroom) by User ID: 7
+2024-09-08 19:16:32,652 - INFO - 127.0.0.1 - - [08/Sep/2024 19:16:32] "[35m[1mPOST /mock/devices HTTP/1.1[0m" 201 -
+2024-09-08 19:20:09,551 - INFO - Received data: {'settings': {'content_filter': 'strict', 'time_limits': {'weekday': '2 hours', 'weekend': '3 hours'}}}
+2024-09-08 19:20:09,551 - INFO - Updating parental controls for user ID 7 with settings: {'content_filter': 'strict', 'time_limits': {'weekday': '2 hours', 'weekend': '3 hours'}}
+2024-09-08 19:20:09,560 - INFO - Parental controls updated for user ID 7
+2024-09-08 19:20:09,560 - INFO - 127.0.0.1 - - [08/Sep/2024 19:20:09] "POST /parental-control/settings HTTP/1.1" 200 -
+2024-09-08 19:26:32,509 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:32] "OPTIONS /logout HTTP/1.1" 200 -
+2024-09-08 19:26:32,519 - INFO - User with token 6e94fc01-f026-466c-8003-002d03b154ff logged out and token blacklisted
+2024-09-08 19:26:32,519 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:32] "DELETE /logout HTTP/1.1" 200 -
+2024-09-08 19:26:35,882 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:35] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 19:26:36,158 - INFO - User logged in: parent_1
+2024-09-08 19:26:36,158 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:26:36,226 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:36,229 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:26:36,234 - INFO - Temperature reading: 21.3°C
+2024-09-08 19:26:36,235 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:26:36,250 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:26:36,251 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:36,259 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:26:36,260 - INFO - Temperature reading: 19.12°C
+2024-09-08 19:26:36,261 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:36,261 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:36] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:26:43,594 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:43] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:43,596 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:43] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:43,602 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:26:43,603 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:43] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:26:43,609 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:26:43,610 - INFO - 127.0.0.1 - - [08/Sep/2024 19:26:43] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:12,821 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:12,830 - INFO - Mock device added: heater (Type: electronic, Location: kitchen) by User ID: 7
+2024-09-08 19:27:12,836 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "[35m[1mPOST /mock/devices HTTP/1.1[0m" 201 -
+2024-09-08 19:27:12,875 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:27:12,878 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:12,881 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:12,882 - INFO - Temperature reading: 24.56°C
+2024-09-08 19:27:12,883 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:27:12,898 - INFO - Temperature reading: 22.47°C
+2024-09-08 19:27:12,898 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:12,899 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:27:12,899 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:12] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:19,972 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:19] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:19,974 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:19] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:19,980 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:19,981 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:19] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:19,986 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:19,987 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:19] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:37,558 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:37,567 - INFO - Mock device added: speaker (Type: electronic, Location: corridor) by User ID: 7
+2024-09-08 19:27:37,571 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "[35m[1mPOST /mock/devices HTTP/1.1[0m" 201 -
+2024-09-08 19:27:37,611 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:27:37,614 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:37,617 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:37,619 - INFO - Temperature reading: 24.27°C
+2024-09-08 19:27:37,620 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:27:37,636 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:27:37,636 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:27:37,637 - INFO - Temperature reading: 18.03°C
+2024-09-08 19:27:37,637 - INFO - 127.0.0.1 - - [08/Sep/2024 19:27:37] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:28:49,084 - INFO - 127.0.0.1 - - [08/Sep/2024 19:28:49] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:28:49,086 - INFO - 127.0.0.1 - - [08/Sep/2024 19:28:49] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:28:49,089 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:28:49,090 - INFO - 127.0.0.1 - - [08/Sep/2024 19:28:49] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:28:49,095 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:28:49,096 - INFO - 127.0.0.1 - - [08/Sep/2024 19:28:49] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:08,572 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:08] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:08,573 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:08] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:08,578 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:08,580 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:08] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:08,586 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:08,586 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:08] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:29,240 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:29,243 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:29,248 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:29,249 - INFO - Temperature reading: 25.18°C
+2024-09-08 19:39:29,251 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:29,251 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:29,266 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:29,267 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:29,267 - INFO - Temperature reading: 18.75°C
+2024-09-08 19:39:29,268 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:29] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:32,933 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:32,933 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:32] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:32,938 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:32,939 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:32] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:44,558 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:44,560 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:44,566 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:44,570 - INFO - Temperature reading: 22.07°C
+2024-09-08 19:39:44,571 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:44,571 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:44,586 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:44,586 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:44,587 - INFO - Temperature reading: 21.06°C
+2024-09-08 19:39:44,587 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:44] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:39:46,496 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:46,497 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:46] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:46,505 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:46,506 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:46] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:49,782 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:49] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:49,783 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:49] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:49,788 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:49,788 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:49] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:49,795 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:39:49,796 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:49] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:39:56,961 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:56] "OPTIONS /logout HTTP/1.1" 200 -
+2024-09-08 19:39:56,979 - INFO - User with token 09958ab0-7b88-4968-8894-7aa83be0f8a2 logged out and token blacklisted
+2024-09-08 19:39:56,980 - INFO - 127.0.0.1 - - [08/Sep/2024 19:39:56] "DELETE /logout HTTP/1.1" 200 -
+2024-09-08 19:40:07,572 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 19:40:07,842 - INFO - User logged in: parent_1
+2024-09-08 19:40:07,843 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:40:07,907 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:40:07,910 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:40:07,918 - INFO - Temperature reading: 22.61°C
+2024-09-08 19:40:07,919 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:40:07,930 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:40:07,931 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:40:07,936 - INFO - Temperature reading: 25.87°C
+2024-09-08 19:40:07,937 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:40:07,939 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:40:07,940 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:07] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:40:12,180 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:12] "OPTIONS /logout HTTP/1.1" 200 -
+2024-09-08 19:40:12,204 - INFO - User with token 65507b6e-6c90-4413-85d3-082edaa97029 logged out and token blacklisted
+2024-09-08 19:40:12,205 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:12] "DELETE /logout HTTP/1.1" 200 -
+2024-09-08 19:40:17,899 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:17] "OPTIONS /logout HTTP/1.1" 200 -
+2024-09-08 19:40:17,901 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:17] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:18,121 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:18] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:18,269 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:18] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:18,448 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:18] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:18,637 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:18] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:18,820 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:18] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:19,001 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:19] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:19,796 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:19] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:20,014 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:20] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:20,153 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:20] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:20,353 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:20] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:21,195 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:21] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:21,371 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:21] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:40:21,543 - INFO - 127.0.0.1 - - [08/Sep/2024 19:40:21] "[31m[1mDELETE /logout HTTP/1.1[0m" 422 -
+2024-09-08 19:41:43,044 - INFO - 127.0.0.1 - - [08/Sep/2024 19:41:43] "[31m[1mGET /parental-control/settings HTTP/1.1[0m" 401 -
+2024-09-08 19:42:36,081 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "OPTIONS /login HTTP/1.1" 200 -
+2024-09-08 19:42:36,319 - INFO - User logged in: parent_1
+2024-09-08 19:42:36,319 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:42:36,385 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:36,389 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "OPTIONS /temperature HTTP/1.1" 200 -
+2024-09-08 19:42:36,395 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:36,395 - INFO - Temperature reading: 23.58°C
+2024-09-08 19:42:36,397 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:36,397 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:42:36,415 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:36,416 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:36,416 - INFO - Temperature reading: 25.24°C
+2024-09-08 19:42:36,417 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:36] "GET /temperature HTTP/1.1" 200 -
+2024-09-08 19:42:47,290 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:47] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:47,291 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:47] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:47,294 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:47,294 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:47] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:47,299 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:47,300 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:47] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:50,963 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:50,964 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:50] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:42:50,971 - INFO - All devices fetched for User ID: 7
+2024-09-08 19:42:50,972 - INFO - 127.0.0.1 - - [08/Sep/2024 19:42:50] "GET /mock/devices HTTP/1.1" 200 -
+2024-09-08 19:46:14,691 - ERROR - Exception on /login [POST]
+Traceback (most recent call last):
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 2077, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1525, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask_cors\extension.py", line 194, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+                                                ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1523, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\venv\Lib\site-packages\flask\app.py", line 1509, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\lloyd\Documents\Github\smart-home\Smart-Home-Automation-System-\smart_home\app.py", line 172, in login
+    if user and bcrypt.check_password_hash(user.password, data["password"]):
+                                                          ~~~~^^^^^^^^^^^^
+KeyError: 'password'
+2024-09-08 19:46:14,692 - INFO - 127.0.0.1 - - [08/Sep/2024 19:46:14] "[35m[1mPOST /login HTTP/1.1[0m" 500 -
+2024-09-08 19:46:41,876 - INFO - User logged in: parent_1
+2024-09-08 19:46:41,876 - INFO - 127.0.0.1 - - [08/Sep/2024 19:46:41] "POST /login HTTP/1.1" 200 -
+2024-09-08 19:47:56,806 - INFO - Devices fetched for User ID: 7 at location: kitchen
+2024-09-08 19:47:56,807 - INFO - 127.0.0.1 - - [08/Sep/2024 19:47:56] "GET /mock/devices/location/kitchen HTTP/1.1" 200 -
+2024-09-08 20:01:42,680 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:42] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 20:01:42,683 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:42] "OPTIONS /mock/devices HTTP/1.1" 200 -
+2024-09-08 20:01:42,689 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:42] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 20:01:42,699 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:42] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 20:01:44,513 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:44] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -
+2024-09-08 20:01:44,519 - INFO - 127.0.0.1 - - [08/Sep/2024 20:01:44] "[31m[1mGET /mock/devices HTTP/1.1[0m" 401 -

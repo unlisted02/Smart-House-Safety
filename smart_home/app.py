@@ -163,7 +163,6 @@ def register():
     logging.info(f"User registered: {data['username']}")
     return jsonify({"message": "User registered successfully"}), 201
 
-
 # User Login
 @app.route("/login", methods=["POST"])
 def login():
@@ -176,7 +175,6 @@ def login():
         return jsonify(access_token=access_token, refresh_token=refresh_token), 200
     logging.warning(f"Failed login attempt for user: {data['username']}")
     return jsonify({"error": "Invalid credentials"}), 401
-
 
 # Refresh Access Token
 @app.route("/refresh", methods=["POST"])
@@ -310,8 +308,6 @@ def mock_device_status(id):
             "logs": logs,
         }
     )
-
-
 # Update a Mock IoT Device
 @app.route("/mock/devices/<int:id>", methods=["PUT"])
 @jwt_required()
@@ -320,21 +316,17 @@ def update_mock_device(id):
     if not device:
         logging.error(f"Device with ID {id} not found.")
         return jsonify({"error": "Device not found"}), 404
-
     data = request.get_json()
     device_name = data.get("name")
     device_type = data.get("device_type")
     location = data.get("location")
-
     if device_name:
         device.name = device_name
     if device_type:
         device.device_type = device_type
     if location:
         device.location = location
-
     db.session.commit()
-
     logging.info(
         f"Device {device.name} (ID: {id}) updated by User ID: {get_jwt_identity()}"
     )
