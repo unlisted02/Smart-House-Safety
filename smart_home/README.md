@@ -30,33 +30,29 @@ If requirements above are not installed in your computer, you'll need to install
   cd Smart-House-Safety
 
   ```
-Navigate to folder
+- Navigate to folder
   ```sh
   cd smart_home
 
   ```
-Create a virtual environment and activate it:
-
-    ```sh
-    python -m venv venv
-    .\venv\Scripts\activate  # On Windows
-    # source venv/bin/activate  # On macOS/Linux
+- Create a virtual environment and activate it:
+  ```sh
+  python -m venv venv
+  .\venv\Scripts\activate  # On Windows
+  # source venv/bin/activate  # On macOS/Linux
     ```
-Install the required packages:
-
-    ```sh
-    pip install -r requirements.txt
-    # run as administrator
+- Install the required packages:
+  ```sh
+  pip install -r requirements.txt
+  # run as administrator
+  ```
+- Run the application:
+  ```sh
+  flask run
     ```
-Run the application:
-
-    ```sh
-    flask run
-    ```
-Navigate to the folder
+- Navigate to the folder
   ```sh
   cd frontend
-
   ```
 - Install npm packages
   ```sh
